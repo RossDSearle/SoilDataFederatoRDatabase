@@ -10,7 +10,7 @@ if(machineName=='soils-discovery'){
 
 
 source(paste0(projectRoot, '/TERNSoilDB_API.R'))
-#source(paste0(projectRoot, '/functions.R'))
+
 
 #* @apiTitle TERN Landscapes Soil Database API
 #* @apiDescription An API for accessing soil data hosted by TERN Landscapes. We provide a home for orphaned soil data sets, that nobody else wants to look after. It might not be much of a home, but at least our orphans have food and a cozy bed. 
@@ -40,7 +40,7 @@ function(req){
      dir.create(logDir, recursive = T)
     }
 
-  logfile <- paste0(projectRoot, "/Logs/NSSC_API_logs_", dt, ".csv")
+  logfile <- paste0(projectRoot, "/Logs/TERNSoilsDB_API_logs_", dt, ".csv")
   if(file.exists(logfile)){
     cat(logentry, '\n', file=logfile, append=T)
   }else{
