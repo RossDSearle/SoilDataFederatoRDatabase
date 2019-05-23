@@ -2,7 +2,12 @@ library(stringr)
 library(RSQLite)
 library(DBI)
 
-projectRoot <- 'C:/Users/sea084/Dropbox/RossRCode/Git/SoilDataFederatoRDatabase'
+machineName <- as.character(Sys.info()['nodename'])
+if(machineName=='soils-discovery'){
+  projectRoot <<- '/srv/plumber/TERNLandscapes/SoilDataFederatoRDatabase'
+}else{
+  projectRoot <<- 'C:/Users/sea084/Dropbox/RossRCode/Git/TERNLandscapes/SoilDataFederatoRDatabase'
+}
 Hosted_dbPath <- paste0(projectRoot, '/DB/SoilDataFederatorDatabase.db3')
 
 source(paste0(projectRoot, '/TERNSoilDBHelpers.R'))

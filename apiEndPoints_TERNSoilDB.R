@@ -1,8 +1,13 @@
 library(htmlTable)
 
 
-projectRoot <- 'C:/Users/sea084/Dropbox/RossRCode/Git/SoilDataFederatoRDatabase'
 machineName <- as.character(Sys.info()['nodename'])
+if(machineName=='soils-discovery'){
+  projectRoot <<- '/srv/plumber/TERNLandscapes/SoilDataFederatoRDatabase'
+}else{
+  projectRoot <<- 'C:/Users/sea084/Dropbox/RossRCode/Git/TERNLandscapes/SoilDataFederatoRDatabase'
+}
+
 
 source(paste0(projectRoot, '/TERNSoilDB_API.R'))
 #source(paste0(projectRoot, '/functions.R'))
