@@ -15,7 +15,6 @@ source(paste0(projectRoot, '/TERNSoilDB_API.R'))
 #* @apiTitle TERN Landscapes Soil Database API
 #* @apiDescription An API for accessing soil data hosted by TERN Landscapes. We provide a home for orphaned soil data sets, that nobody else wants to look after. It might not be much of a home, but at least our orphans have food and a cozy bed. 
 
-
 #* @apiTag TERNSoilsDB An API to query the TERN Soils Database
 
 
@@ -56,32 +55,7 @@ function(req){
 
 
 
-#* Returns Soil Property data
 
-#* @param format (Optional) format of the response to return. Either json, csv, or xml. Default = json
-#* @param observedPropertyGroup (Required) A code specifying the group of soil observed properties to query.
-#* @param observedProperty (Required) The soil property code.
-
-
-
-#* @get /TERNSoilDB/SoilData
-#* @tag TERNSoilsDB
-apiGetTERNSoilDB_SoilData<- function(res, usr='Public', pwd='Public', providers=NULL, observedProperty=NULL, observedPropertyGroup=NULL, format='json'){
-
-tryCatch({
-
-  print(paste0('Providers = ', providers))
-        DF <- hDB_getSoilData(providers, observedProperty, observedPropertyGroup)
-         label <- 'SoilProperty'
-         resp <- cerealize(DF, label, format, res)
-         return(resp)
-  }, error = function(res)
-  {
-    print(geterrmessage())
-    res$status <- 400
-    list(error=jsonlite::unbox(geterrmessage()))
-  })
-}
 
 
 
@@ -140,7 +114,29 @@ apiGetTERNSoilDB_GetDatasets <- function( res, Provider=NULL, verbose=F, format=
 
 
 
+#* Returns Soil Property data
 
+#* @param format (Optional) format of the response to return. Either json, csv, or xml. Default = json
+#* @param observedPropertyGroup (Required) A code specifying the group of soil observed properties to query.
+#* @param observedProperty (Required) The soil property code.
+#* @get /TERNSoilDB/SoilData
+#* @tag TERNSoilsDB
+apiGetTERNSoilDB_SoilData<- function(res, usr='Public', pwd='Public', providers=NULL, observedProperty=NULL, observedPropertyGroup=NULL, format='json'){
+  
+  tryCatch({
+    
+    print(paste0('Providers = ', providers))
+    DF <- hDB_getSoilData(providers, observedProperty, observedPropertyGroup)
+    label <- 'SoilProperty'
+    resp <- cerealize(DF, label, format, res)
+    return(resp)
+  }, error = function(res)
+  {
+    print(geterrmessage())
+    res$status <- 400
+    list(error=jsonlite::unbox(geterrmessage()))
+  })
+}
 
 
 
