@@ -6,7 +6,7 @@ machineName <- as.character(Sys.info()['nodename'])
 if(machineName=='soils-discovery'){
   projectRoot <<- '/srv/plumber/TERNLandscapes/SoilDataFederatoRDatabase'
 }else{
-  projectRoot <<- 'C:/Users/sea084/Dropbox/RossRCode/Git/TERNLandscapes/SoilDataFederatoRDatabase'
+  projectRoot <<- 'C:/Users/sea084/Dropbox/RossRCode/Git/TERNLandscapes/APIs/SoilDataFederatoRDatabase'
 }
 Hosted_dbPath <- paste0(projectRoot, '/DB/SoilDataFederatorDatabase.db3')
 

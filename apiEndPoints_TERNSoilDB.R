@@ -5,7 +5,7 @@ machineName <- as.character(Sys.info()['nodename'])
 if(machineName=='soils-discovery'){
   projectRoot <<- '/srv/plumber/TERNLandscapes/SoilDataFederatoRDatabase'
 }else{
-  projectRoot <<- 'C:/Users/sea084/Dropbox/RossRCode/Git/TERNLandscapes/SoilDataFederatoRDatabase'
+  projectRoot <<- 'C:/Users/sea084/Dropbox/RossRCode/Git/TERNLandscapes/APIs/SoilDataFederatoRDatabase'
 }
 
 
@@ -120,11 +120,11 @@ apiGetTERNSoilDB_GetProviders <- function( res, format='json'){
 
 #* @get /TERNSoilDB/DataSets
 #* @tag TERNSoilsDB
-apiGetTERNSoilDB_GetDatasets <- function( res, verbose=F, format='json'){
+apiGetTERNSoilDB_GetDatasets <- function( res, Provider=NULL, verbose=F, format='json'){
   
   tryCatch({
     
-    DF <-hDB_getDatasets(verbose)
+    DF <-hDB_getDatasets(Provider, verbose)
     label <- 'DataSets'
     resp <- cerealize(DF, label, format, res)
     

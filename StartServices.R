@@ -1,9 +1,18 @@
 library(plumber)
 library(htmltidy)
 
-deployDir <-'/srv/plumber/TERNLandscapes/SoilDataFederatoRDatabase'
+#deployDir <-'/srv/plumber/TERNLandscapes/SoilDataFederatoRDatabase'
 
-server <- 'http://esoil.io'
+machineName <- as.character(Sys.info()['nodename'])
+if(machineName=='soils-discovery'){
+  deployDir <<- '/srv/plumber/TERNLandscapes/SoilDataFederatoRDatabase'
+  server <- 'http://esoil.io'
+}else{
+  deployDir <<- 'C:/Users/sea084/Dropbox/RossRCode/Git/TERNLandscapes/APIs/SoilDataFederatoRDatabase'
+  server <- 'http://localhost'
+}
+
+
 portNum <- 8076
 
 r <- plumb(paste0(deployDir, "/apiEndPoints_TERNSoilDB.R"))  
